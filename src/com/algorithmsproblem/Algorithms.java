@@ -1,39 +1,45 @@
 package com.algorithmsproblem;
 
+import java.util.Scanner;
+
+/**
+ * This class is for insertion short
+ */
 public class Algorithms {
-    /**
-     * This method is for input for binary search
-     */
-    public static void binarySearch() {
-        String[] array = {"we", "are", "the", "people", "of", "India"};
-        stringBinary(array, "people");
-    }
 
-    /**
-     * This method is for binary search searching with the key
-     */
-
-    public static void stringBinary(String[] array, String search) {
-        int mid;
-        int min = 0, max = array.length - 1;
-        while (min <= max) {
-            mid = (min + max) / 2;
-            if (array[mid].compareTo(search) < 0) {
-                min = mid + 1;
-            } else if (array[mid].compareTo(search) > 0) {
-                max = mid - 1;
-            } else if (array[mid].compareTo(search) == 0) {
-                System.out.println("Key found");
-                return;
+    public static void insertionSort(String[] strings) {
+        for (int i = 1; i < strings.length; i++) {
+            String key = strings[i];
+            int j = i - 1;
+            while (j >= 0 && strings[j].compareTo(key) > 0) {
+                strings[j + 1] = strings[j];
+                j--;
             }
+            strings[j + 1] = key;
         }
-        System.out.println("key not found ");
     }
 
     /**
-     * Main method for execute the program
+     * Main method for execute the program taking user input short the string
      */
     public static void main(String[] args) {
-        Algorithms.binarySearch();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of strings: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
+
+        String[] strings = new String[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter string " + (i + 1) + ": ");
+            strings[i] = scanner.nextLine();
+        }
+
+        insertionSort(strings);
+
+        System.out.println("Sorted strings:");
+        for (String str : strings) {
+            System.out.println(str);
+        }
     }
 }
+
