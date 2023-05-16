@@ -1,37 +1,39 @@
 package com.algorithmsproblem;
 
-import java.util.Scanner;
-
 public class Algorithms {
     /**
-     * This method is for return all permutations of a String
-     * @param str
-     * @param ans
+     * This method is for input for binary search
      */
-    public static void permute(String str, String ans) {
-        if (str.length() == 0) {
-            System.out.print(ans + " ");
-            return;
-        }
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            String left_SubStr = str.substring(0, i);
-            String right_SubStr = str.substring(i + 1);
-            String restAll = left_SubStr + right_SubStr;
-            permute(restAll, ans + ch);
-        }
+    public static void binarySearch() {
+        String[] array = {"we", "are", "the", "people", "of", "India"};
+        stringBinary(array, "people");
     }
 
     /**
-     * Main method to execute the program
-     * @param args
+     * This method is for binary search searching with the key
      */
 
+    public static void stringBinary(String[] array, String search) {
+        int mid;
+        int min = 0, max = array.length - 1;
+        while (min <= max) {
+            mid = (min + max) / 2;
+            if (array[mid].compareTo(search) < 0) {
+                min = mid + 1;
+            } else if (array[mid].compareTo(search) > 0) {
+                max = mid - 1;
+            } else if (array[mid].compareTo(search) == 0) {
+                System.out.println("Key found");
+                return;
+            }
+        }
+        System.out.println("key not found ");
+    }
+
+    /**
+     * Main method for execute the program
+     */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter string");
-        String ans = " ";
-        String str = scanner.next();
-        Algorithms.permute(str, ans);
+        Algorithms.binarySearch();
     }
 }
