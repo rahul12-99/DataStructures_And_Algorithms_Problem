@@ -3,43 +3,45 @@ package com.algorithmsproblem;
 import java.util.Scanner;
 
 /**
- * This class is for insertion short
+ * This class is for bubble short
  */
 public class Algorithms {
 
-    public static void insertionSort(String[] strings) {
-        for (int i = 1; i < strings.length; i++) {
-            String key = strings[i];
-            int j = i - 1;
-            while (j >= 0 && strings[j].compareTo(key) > 0) {
-                strings[j + 1] = strings[j];
-                j--;
-            }
-            strings[j + 1] = key;
-        }
-    }
 
-    /**
-     * Main method for execute the program taking user input short the string
-     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the number of strings: ");
-        int n = scanner.nextInt();
-        scanner.nextLine();
 
-        String[] strings = new String[n];
-        for (int i = 0; i < n; i++) {
-            System.out.print("Enter string " + (i + 1) + ": ");
-            strings[i] = scanner.nextLine();
+        // Read the number of integers
+        System.out.print("Enter the number of integers: ");
+        int count = scanner.nextInt();
+
+        // Create an array to store the integers
+        int[] numbers = new int[count];
+
+        // Read the integers
+        System.out.println("Enter the integers:");
+        for (int i = 0; i < count; i++) {
+            numbers[i] = scanner.nextInt();
         }
 
-        insertionSort(strings);
-
-        System.out.println("Sorted strings:");
-        for (String str : strings) {
-            System.out.println(str);
+        // Bubble sort algorithm
+        for (int i = 0; i < count - 1; i++) {
+            for (int j = 0; j < count - i - 1; j++) {
+                if (numbers[j] > numbers[j + 1]) {
+                    // Swap the numbers
+                    int temp = numbers[j];
+                    numbers[j] = numbers[j + 1];
+                    numbers[j + 1] = temp;
+                }
+            }
         }
+
+        // Print the sorted numbers
+        System.out.println("Sorted numbers:");
+        for (int i = 0; i < count; i++) {
+            System.out.print(numbers[i] + " ");
+        }
+        System.out.println();
     }
 }
 
